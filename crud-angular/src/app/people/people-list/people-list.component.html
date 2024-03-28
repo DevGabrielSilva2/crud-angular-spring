@@ -1,0 +1,63 @@
+<mat-table [dataSource]="people">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let person"> {{person.id}} </mat-cell>
+  </ng-container>
+
+  <!-- CPF Column -->
+  <ng-container matColumnDef="cpf">
+    <mat-header-cell *matHeaderCellDef> CPF </mat-header-cell>
+    <mat-cell *matCellDef="let person"> {{person.cpf}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+    <mat-cell *matCellDef="let person"> {{person.name}} </mat-cell>
+  </ng-container>
+
+  <!-- Surname Column -->
+  <ng-container matColumnDef="surname">
+    <mat-header-cell *matHeaderCellDef> Sobrenome </mat-header-cell>
+    <mat-cell *matCellDef="let person"> {{person.surname}} </mat-cell>
+  </ng-container>
+
+  <!-- Status Column -->
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+    <mat-cell *matCellDef="let person"> {{person.status}} </mat-cell>
+  </ng-container>
+
+  <!-- Register Column -->
+  <ng-container matColumnDef="dateRegister">
+    <mat-header-cell *matHeaderCellDef> Data de Registro </mat-header-cell>
+    <mat-cell *matCellDef="let person"> {{ person.dateRegister | date: 'dd/MM/yyyy' }} </mat-cell>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-mini-fab color="acent" aria-label="Adicionar Pessoa"(click)="onAdd()">
+        <mat-icon >add</mat-icon>
+      </button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let person">
+      <button mat-icon-button color="primary" aria-label="Editar"(click)="onEdit(person)">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="worn" aria-label="Remove" (click)="onDelete(person)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

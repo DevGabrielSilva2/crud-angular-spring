@@ -5,18 +5,23 @@ import { CommonModule } from '@angular/common';
 import { PeopleRoutingModule } from './people-routing.module';
 import { PeopleComponent } from './people/people.component';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
-
+import { PeopleFormComponent } from './people-form/people-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PeopleListComponent } from './people-list/people-list.component';
 
 
 @NgModule({
   declarations: [
-    PeopleComponent
+    PeopleComponent,
+    PeopleFormComponent,
+    PeopleListComponent
   ],
   imports: [
     CommonModule,
     PeopleRoutingModule,
     AppMaterialModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class PeopleModule { }

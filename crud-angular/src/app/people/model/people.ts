@@ -1,8 +1,8 @@
 export interface People {
-  _id: number;
+  id: number;
   name: string;
   surname: string;
   cpf: string;
   status: string;
-  date_register: Date;
+  dateRegister: Date;
 }

@@ -9,7 +9,7 @@ import { delay, first, tap } from 'rxjs';
 })
 export class PeopleService {
 
-  private readonly API = '/assets/people.json'
+  private readonly API = 'api/people'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,5 +19,28 @@ export class PeopleService {
       first(),
       delay(2000)
     )
+  }
+
+  loadById(id: string) {
+    return this.httpClient.get<People>(`${this.API}/${id}`);
+  }
+
+  save(record: Partial<People>){
+    if(record.id){
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<People>){
+    return this.httpClient.post<People>(this.API, record);
+  }
+
+  private update(record: Partial<People>){
+    return this.httpClient.put<People>(`${this.API}/${record.id}`, record);
+  }
+
+  delete(id: string){
+    return this.httpClient.delete(`${this.API}/${id}`);
   }
 }

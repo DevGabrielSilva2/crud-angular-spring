@@ -1,9 +1,12 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { People } from './../model/people';
 import { Component } from '@angular/core';
-import { People } from '../model/people';
 import { PeopleService } from '../services/people.service';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, config, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+import { Router, ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-people',
@@ -13,10 +16,24 @@ import { ErrorDialogComponent } from '../../shared/components/error-dialog/error
 export class PeopleComponent {
 
   people$: Observable<People[]>;
-  displayedColumns = ['cpf', 'name', 'surname', 'status', 'date_register' ]
 
 
-  constructor(private peopleService:PeopleService, public dialog: MatDialog) {
+  constructor(
+    private peopleService:PeopleService,
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar) {
+    this.people$ = this.peopleService.list()
+    .pipe(
+      catchError(error  => {
+        this.onError('Resource Not Found')
+        return of([]);
+      })
+    );
+  }
+
+  refresh(){
     this.people$ = this.peopleService.list()
     .pipe(
       catchError(error  => {
@@ -30,6 +47,27 @@ export class PeopleComponent {
     this.dialog.open(ErrorDialogComponent,{
       data: errorMsg
     });
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route})
+  }
+
+  onEdit(person: People) {
+    this.router.navigate(['edit', person.id], {relativeTo: this.route})
+  }
+
+  onRemove(person: People) {
+    this.peopleService.delete(person.id.toString()).subscribe(
+      () => {
+        this.refresh()
+        this.snackBar.open('Removido com sucesso!!!','X', {
+          duration:2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      }
+    );
   }
 
 }

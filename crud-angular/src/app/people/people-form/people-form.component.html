@@ -1,0 +1,34 @@
+<mat-card>
+
+  <mat-toolbar color="primary">NOVO CADASTRO</mat-toolbar>
+
+  <mat-card-content>
+    <form [formGroup]="form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Nome" formControlName="name" maxlength="50">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Sobrenome" formControlName="surname" maxlength="50">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="CPF" formControlName="cpf" maxlength="14" (input)="formatCPF($event)">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="ENABLE">ENABLE</mat-option>
+          <mat-option value="DISABLE">DISABLE</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions class="actions-center">
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Salvar
+    </button>
+  </mat-card-actions>
+</mat-card>
