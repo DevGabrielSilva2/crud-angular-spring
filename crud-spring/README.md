@@ -9,7 +9,7 @@
 
 ## O que é?
 
-> Este projeto é um CRUD de pessoas desenvolvido em Java 22 com Spring Boot 3.
+> Este projeto é um CRUD de usuarios desenvolvido em Java 22 com Spring Boot 3.
 
 ## Tecnologias utilizadas
 
@@ -54,11 +54,11 @@ A seguir, são listados os endpoints da API para executar as operações CRUD em
 - **Endpoint**: `/api/people`
 - **Descrição**: Retorna `cpf`, `dateRegister`, `id`, `name`, `status` e `esurname`
 
-### 2. **Listar Pessoas Cadastradas**
+### 2. **Listar usuarios Cadastradas**
 
 - **Método**: GET
 - **Endpoint**: `/api/people`
-- **Descrição**:Retorna uma lista de todas as pessoas cadastradas.
+- **Descrição**:Retorna uma lista de todas as usuarios cadastradas.
 
 ### 3. **Atualizar Registro Pessoa**
 
@@ -73,11 +73,7 @@ A seguir, são listados os endpoints da API para executar as operações CRUD em
 - **Descrição**: Remove o registro de uma pessoa existente com base no ID fornecido.
 
 ## Funcionalidades
-A aplicação permite que você cadastre, edite e exclua registros de pessoas.
-
-## Contribuições
-São bem-vindas contribuições para este projeto. Para contribuir, basta criar um fork do repositório e enviar um pull request com suas alterações.
-
+A aplicação permite que você cadastre, edite e exclua registros de usuarios.
 
 ## Agradecimentos
 Agradeço a oportunidade de participar do processo seletivo, que me motivou a desenvolver este projeto.
